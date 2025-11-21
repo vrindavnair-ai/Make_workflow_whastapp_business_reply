@@ -1,0 +1,1526 @@
+{
+    "name": "Whatsapp_automatic_reply",
+    "flow": [
+        {
+            "id": 1,
+            "module": "whatsapp-business-cloud:watchEvents2",
+            "version": 1,
+            "parameters": {
+                "__IMTHOOK__": 2119413
+            },
+            "mapper": {},
+            "metadata": {
+                "designer": {
+                    "x": 0,
+                    "y": 0
+                },
+                "restore": {
+                    "parameters": {
+                        "__IMTHOOK__": {
+                            "data": {
+                                "editable": "false"
+                            },
+                            "label": "My WhatsApp Business Cloud Events webhook"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTHOOK__",
+                        "type": "hook:whatsapp-business-cloud",
+                        "label": "Webhook",
+                        "required": true
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "id",
+                        "type": "text",
+                        "label": "WhatsApp Business Account ID"
+                    },
+                    {
+                        "name": "time",
+                        "type": "date",
+                        "label": "Time"
+                    },
+                    {
+                        "name": "field",
+                        "type": "text",
+                        "label": "Field"
+                    },
+                    {
+                        "name": "messaging_product",
+                        "type": "text",
+                        "label": "Messaging Product"
+                    },
+                    {
+                        "name": "metadata",
+                        "spec": [
+                            {
+                                "name": "display_phone_number",
+                                "type": "text",
+                                "label": "Display Phone Number"
+                            },
+                            {
+                                "name": "phone_number_id",
+                                "type": "text",
+                                "label": "Phone Number ID"
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Metadata"
+                    },
+                    {
+                        "name": "contacts",
+                        "spec": {
+                            "spec": [
+                                {
+                                    "name": "profile",
+                                    "spec": [
+                                        {
+                                            "name": "name",
+                                            "type": "text",
+                                            "label": "Name"
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Profile"
+                                },
+                                {
+                                    "name": "wa_id",
+                                    "type": "text",
+                                    "label": "WhatsApp ID"
+                                }
+                            ],
+                            "type": "collection"
+                        },
+                        "type": "array",
+                        "label": "Contacts"
+                    },
+                    {
+                        "name": "messages",
+                        "spec": {
+                            "spec": [
+                                {
+                                    "name": "from",
+                                    "type": "text",
+                                    "label": "Sender"
+                                },
+                                {
+                                    "name": "id",
+                                    "type": "text",
+                                    "label": "Message ID"
+                                },
+                                {
+                                    "name": "timestamp",
+                                    "type": "date",
+                                    "label": "Timestamp"
+                                },
+                                {
+                                    "name": "text",
+                                    "spec": [
+                                        {
+                                            "name": "body",
+                                            "type": "text",
+                                            "label": "Body"
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Text"
+                                },
+                                {
+                                    "name": "type",
+                                    "type": "text",
+                                    "label": "Type"
+                                },
+                                {
+                                    "name": "image",
+                                    "spec": [
+                                        {
+                                            "name": "caption",
+                                            "type": "text",
+                                            "label": "Caption"
+                                        },
+                                        {
+                                            "name": "mime_type",
+                                            "type": "text",
+                                            "label": "MIME Type"
+                                        },
+                                        {
+                                            "name": "sha256",
+                                            "type": "text",
+                                            "label": "SHA256"
+                                        },
+                                        {
+                                            "name": "id",
+                                            "type": "text",
+                                            "label": "Media ID"
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Image"
+                                },
+                                {
+                                    "name": "audio",
+                                    "spec": [
+                                        {
+                                            "name": "mime_type",
+                                            "type": "text",
+                                            "label": "MIME Type"
+                                        },
+                                        {
+                                            "name": "sha256",
+                                            "type": "text",
+                                            "label": "SHA256"
+                                        },
+                                        {
+                                            "name": "id",
+                                            "type": "text",
+                                            "label": "Media ID"
+                                        },
+                                        {
+                                            "name": "voice",
+                                            "type": "boolean",
+                                            "label": "Voice"
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Audio"
+                                },
+                                {
+                                    "name": "video",
+                                    "spec": [
+                                        {
+                                            "name": "caption",
+                                            "type": "text",
+                                            "label": "Caption"
+                                        },
+                                        {
+                                            "name": "mime_type",
+                                            "type": "text",
+                                            "label": "MIME Type"
+                                        },
+                                        {
+                                            "name": "sha256",
+                                            "type": "text",
+                                            "label": "SHA256"
+                                        },
+                                        {
+                                            "name": "id",
+                                            "type": "text",
+                                            "label": "Media ID"
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Video"
+                                },
+                                {
+                                    "name": "document",
+                                    "spec": [
+                                        {
+                                            "name": "caption",
+                                            "type": "text",
+                                            "label": "Caption"
+                                        },
+                                        {
+                                            "name": "filename",
+                                            "type": "text",
+                                            "label": "File Name"
+                                        },
+                                        {
+                                            "name": "mime_type",
+                                            "type": "text",
+                                            "label": "MIME Type"
+                                        },
+                                        {
+                                            "name": "sha256",
+                                            "type": "text",
+                                            "label": "SHA256"
+                                        },
+                                        {
+                                            "name": "id",
+                                            "type": "text",
+                                            "label": "Media ID"
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Document"
+                                },
+                                {
+                                    "name": "contacts",
+                                    "spec": {
+                                        "spec": [
+                                            {
+                                                "name": "name",
+                                                "spec": [
+                                                    {
+                                                        "name": "formatted_name",
+                                                        "type": "text",
+                                                        "label": "Formatted Name"
+                                                    },
+                                                    {
+                                                        "name": "first_name",
+                                                        "type": "text",
+                                                        "label": "First Name"
+                                                    },
+                                                    {
+                                                        "name": "last_name",
+                                                        "type": "text",
+                                                        "label": "Last Name"
+                                                    },
+                                                    {
+                                                        "name": "middle_name",
+                                                        "type": "text",
+                                                        "label": "Middle Name"
+                                                    },
+                                                    {
+                                                        "name": "suffix",
+                                                        "type": "text",
+                                                        "label": "Name Suffix"
+                                                    },
+                                                    {
+                                                        "name": "prefix",
+                                                        "type": "text",
+                                                        "label": "Name Prefix"
+                                                    }
+                                                ],
+                                                "type": "collection",
+                                                "label": "Name"
+                                            },
+                                            {
+                                                "name": "phones",
+                                                "spec": [
+                                                    {
+                                                        "name": "phone",
+                                                        "type": "text",
+                                                        "label": "Phone"
+                                                    },
+                                                    {
+                                                        "name": "type",
+                                                        "type": "text",
+                                                        "label": "Type"
+                                                    }
+                                                ],
+                                                "type": "array",
+                                                "label": "Phones"
+                                            },
+                                            {
+                                                "name": "emails",
+                                                "spec": [
+                                                    {
+                                                        "name": "email",
+                                                        "type": "email",
+                                                        "label": "Email"
+                                                    },
+                                                    {
+                                                        "name": "type",
+                                                        "type": "text",
+                                                        "label": "Type"
+                                                    }
+                                                ],
+                                                "type": "array",
+                                                "label": "Emails"
+                                            },
+                                            {
+                                                "name": "org",
+                                                "spec": [
+                                                    {
+                                                        "name": "company",
+                                                        "type": "text",
+                                                        "label": "Company"
+                                                    },
+                                                    {
+                                                        "name": "department",
+                                                        "type": "text",
+                                                        "label": "Department"
+                                                    },
+                                                    {
+                                                        "name": "title",
+                                                        "type": "text",
+                                                        "label": "Title"
+                                                    }
+                                                ],
+                                                "type": "collection",
+                                                "label": "Organization"
+                                            },
+                                            {
+                                                "name": "urls",
+                                                "spec": [
+                                                    {
+                                                        "name": "type",
+                                                        "type": "text",
+                                                        "label": "Type"
+                                                    },
+                                                    {
+                                                        "name": "url",
+                                                        "type": "url",
+                                                        "label": "URL"
+                                                    }
+                                                ],
+                                                "type": "array",
+                                                "label": "URLs"
+                                            },
+                                            {
+                                                "name": "addresses",
+                                                "spec": [
+                                                    {
+                                                        "name": "type",
+                                                        "type": "text",
+                                                        "label": "Type"
+                                                    },
+                                                    {
+                                                        "name": "street",
+                                                        "type": "text",
+                                                        "label": "Street"
+                                                    },
+                                                    {
+                                                        "name": "city",
+                                                        "type": "text",
+                                                        "label": "City"
+                                                    },
+                                                    {
+                                                        "name": "zip",
+                                                        "type": "text",
+                                                        "label": "ZIP"
+                                                    },
+                                                    {
+                                                        "name": "country",
+                                                        "type": "text",
+                                                        "label": "Country"
+                                                    },
+                                                    {
+                                                        "name": "country_code",
+                                                        "type": "text",
+                                                        "label": "Country Code"
+                                                    }
+                                                ],
+                                                "type": "array",
+                                                "label": "Addresses"
+                                            },
+                                            {
+                                                "name": "birthday",
+                                                "type": "text",
+                                                "label": "Birthday"
+                                            }
+                                        ],
+                                        "type": "collection"
+                                    },
+                                    "type": "array",
+                                    "label": "Contacts"
+                                },
+                                {
+                                    "name": "sticker",
+                                    "spec": [
+                                        {
+                                            "name": "mime_type",
+                                            "type": "text",
+                                            "label": "MIME Type"
+                                        },
+                                        {
+                                            "name": "sha256",
+                                            "type": "text",
+                                            "label": "SHA256"
+                                        },
+                                        {
+                                            "name": "id",
+                                            "type": "text",
+                                            "label": "Media ID"
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Sticker"
+                                },
+                                {
+                                    "name": "location",
+                                    "spec": [
+                                        {
+                                            "name": "latitude",
+                                            "type": "number",
+                                            "label": "Latitude"
+                                        },
+                                        {
+                                            "name": "longitude",
+                                            "type": "number",
+                                            "label": "Longitude"
+                                        },
+                                        {
+                                            "name": "name",
+                                            "type": "text",
+                                            "label": "Name"
+                                        },
+                                        {
+                                            "name": "address",
+                                            "type": "text",
+                                            "label": "Address"
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Location"
+                                },
+                                {
+                                    "name": "context",
+                                    "spec": [
+                                        {
+                                            "name": "from",
+                                            "type": "text",
+                                            "label": "From"
+                                        },
+                                        {
+                                            "name": "id",
+                                            "type": "text",
+                                            "label": "Context ID"
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Context"
+                                },
+                                {
+                                    "name": "button",
+                                    "spec": [
+                                        {
+                                            "name": "payload",
+                                            "type": "text",
+                                            "label": "Payload"
+                                        },
+                                        {
+                                            "name": "text",
+                                            "type": "text",
+                                            "label": "Text"
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Button"
+                                },
+                                {
+                                    "name": "interactive",
+                                    "spec": [
+                                        {
+                                            "name": "type",
+                                            "type": "text",
+                                            "label": "Type"
+                                        },
+                                        {
+                                            "name": "list_reply",
+                                            "spec": [
+                                                {
+                                                    "name": "id",
+                                                    "type": "number",
+                                                    "label": "ID"
+                                                },
+                                                {
+                                                    "name": "title",
+                                                    "type": "text",
+                                                    "label": "Title"
+                                                },
+                                                {
+                                                    "name": "description",
+                                                    "type": "text",
+                                                    "label": "Description"
+                                                }
+                                            ],
+                                            "type": "collection",
+                                            "label": "List Reply"
+                                        },
+                                        {
+                                            "name": "button_reply",
+                                            "spec": [
+                                                {
+                                                    "name": "id",
+                                                    "type": "number",
+                                                    "label": "ID"
+                                                },
+                                                {
+                                                    "name": "title",
+                                                    "type": "text",
+                                                    "label": "Title"
+                                                }
+                                            ],
+                                            "type": "collection",
+                                            "label": "Button Reply"
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Interactive"
+                                }
+                            ],
+                            "type": "collection"
+                        },
+                        "type": "array",
+                        "label": "Messages"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 2,
+            "module": "google-vertex-ai:createAMultimodalPrompt",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 3626654
+            },
+            "mapper": {
+                "topP": "1",
+                "model": "gemini-2.5-flash",
+                "messages": [
+                    {
+                        "role": "user",
+                        "content": "You are a business owner named Vrinda running an AI product business. Write a polite and suitable reply to the customer query: '{{1.messages[].text.body}}'. Start the reply with \"Hi{{1.contacts[].profile.name}},\"  if customer name is available, or a polite generic greeting if not). Briefly mention that your business specializes in innovative AI solutions for automation and data analysis. Inform the customer that you will contact them within 2 days to discuss their specific needs. The reply must end with \"Thanks, Karima\". Generate only the message text.\n"
+                    }
+                ],
+                "projectId": "make-test-478011",
+                "temperature": "0.9",
+                "responseMimeType": "text/plain",
+                "serviceEndpointLocationId": "us-central1"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 300,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "model": {
+                            "mode": "chose",
+                            "label": "Gemini 2.5 Flash",
+                            "nested": [
+                                {
+                                    "name": "tools",
+                                    "type": "select",
+                                    "label": "Tools",
+                                    "options": [
+                                        {
+                                            "label": "Function Declarations",
+                                            "value": "functionDeclarations",
+                                            "nested": [
+                                                {
+                                                    "name": "functionDeclarations",
+                                                    "spec": [
+                                                        {
+                                                            "name": "name",
+                                                            "type": "text",
+                                                            "label": "Function Name",
+                                                            "required": true
+                                                        },
+                                                        {
+                                                            "name": "description",
+                                                            "type": "text",
+                                                            "label": "Function Description",
+                                                            "required": true
+                                                        },
+                                                        {
+                                                            "help": "Configuration of the parameters that the function accepts.",
+                                                            "name": "parameters",
+                                                            "spec": {
+                                                                "spec": [
+                                                                    "rpc://google-vertex-ai/1/parametersGeminiFunctionParameters"
+                                                                ],
+                                                                "type": "collection",
+                                                                "label": "Parameter"
+                                                            },
+                                                            "type": "array",
+                                                            "label": "Parameters",
+                                                            "required": true
+                                                        }
+                                                    ],
+                                                    "type": "array",
+                                                    "label": "Function Declarations"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "label": "Grounding",
+                                            "value": "grounding",
+                                            "nested": [
+                                                "rpc://google-vertex-ai/1/parametersGrounding"
+                                            ]
+                                        }
+                                    ],
+                                    "advanced": true
+                                }
+                            ]
+                        },
+                        "tools": {
+                            "mode": "chose",
+                            "label": "Empty"
+                        },
+                        "messages": {
+                            "mode": "chose",
+                            "items": [
+                                {
+                                    "role": {
+                                        "mode": "chose",
+                                        "label": "User"
+                                    },
+                                    "files": {
+                                        "mode": "chose"
+                                    }
+                                }
+                            ]
+                        },
+                        "projectId": {
+                            "mode": "chose",
+                            "label": "Make test"
+                        },
+                        "stopSequences": {
+                            "mode": "chose"
+                        },
+                        "safetySettings": {
+                            "mode": "chose"
+                        },
+                        "responseMimeType": {
+                            "label": "Text"
+                        },
+                        "serviceEndpointLocationId": {
+                            "mode": "chose",
+                            "label": "Iowa"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "google-vertex-ai"
+                            },
+                            "label": "My Google Gemini (Vertex AI) connection (vrindavnair21@gmail.com)"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:google-vertex-ai",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "projectId",
+                        "type": "select",
+                        "label": "GCP Project",
+                        "required": true
+                    },
+                    {
+                        "name": "serviceEndpointLocationId",
+                        "type": "select",
+                        "label": "Region",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "us-central1",
+                                "us-west4",
+                                "northamerica-northeast1",
+                                "us-east4",
+                                "us-west1",
+                                "europe-west1",
+                                "europe-west3",
+                                "europe-west2",
+                                "europe-west4",
+                                "europe-west9",
+                                "asia-northeast3",
+                                "asia-southeast1",
+                                "asia-northeast1"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "model",
+                        "type": "select",
+                        "label": "Model",
+                        "required": true
+                    },
+                    {
+                        "name": "messages",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "role",
+                                    "type": "select",
+                                    "label": "Role",
+                                    "options": [
+                                        {
+                                            "label": "User",
+                                            "value": "user",
+                                            "default": true
+                                        },
+                                        {
+                                            "label": "Assistant",
+                                            "value": "model"
+                                        }
+                                    ],
+                                    "required": true
+                                },
+                                {
+                                    "name": "content",
+                                    "type": "text",
+                                    "label": "Text Content",
+                                    "required": true
+                                },
+                                {
+                                    "name": "files",
+                                    "spec": {
+                                        "spec": [
+                                            {
+                                                "name": "fileType",
+                                                "type": "select",
+                                                "label": "File Type",
+                                                "options": [
+                                                    {
+                                                        "label": "Image",
+                                                        "value": "image",
+                                                        "nested": [
+                                                            {
+                                                                "name": "inputType",
+                                                                "type": "select",
+                                                                "label": "Image Input Method",
+                                                                "options": [
+                                                                    {
+                                                                        "label": "Upload a File",
+                                                                        "value": "upload",
+                                                                        "nested": [
+                                                                            {
+                                                                                "name": "fileName",
+                                                                                "type": "filename",
+                                                                                "label": "File Name",
+                                                                                "required": true,
+                                                                                "semantic": "file:name",
+                                                                                "extension": [
+                                                                                    "png",
+                                                                                    "jpeg",
+                                                                                    "jpg",
+                                                                                    "webp",
+                                                                                    "heic",
+                                                                                    "heif"
+                                                                                ]
+                                                                            },
+                                                                            {
+                                                                                "name": "data",
+                                                                                "type": "buffer",
+                                                                                "label": "Data",
+                                                                                "required": true,
+                                                                                "semantic": "file:data"
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "label": "File URL",
+                                                                        "value": "uri",
+                                                                        "nested": [
+                                                                            {
+                                                                                "help": "The file extension/format.",
+                                                                                "name": "mime",
+                                                                                "type": "select",
+                                                                                "label": "MIME Type",
+                                                                                "options": [
+                                                                                    {
+                                                                                        "label": "PNG",
+                                                                                        "value": "png"
+                                                                                    },
+                                                                                    {
+                                                                                        "label": "JPG",
+                                                                                        "value": "jpg"
+                                                                                    },
+                                                                                    {
+                                                                                        "label": "JPEG",
+                                                                                        "value": "jpeg"
+                                                                                    },
+                                                                                    {
+                                                                                        "label": "WEBP",
+                                                                                        "value": "webp"
+                                                                                    },
+                                                                                    {
+                                                                                        "label": "HEIC",
+                                                                                        "value": "heic"
+                                                                                    },
+                                                                                    {
+                                                                                        "label": "HEIF",
+                                                                                        "value": "heif"
+                                                                                    }
+                                                                                ],
+                                                                                "required": true
+                                                                            },
+                                                                            {
+                                                                                "help": "The URL must be publicly accessible. To test this, you can try opening the URL in an anonymous tab. It must take you directly to the file.\nEnsure that the URL is not restricted from automated access. This can involve external platform settings, proxy bot-blocking, and robots.txt configuration.",
+                                                                                "name": "file_uri",
+                                                                                "type": "text",
+                                                                                "label": "File URL",
+                                                                                "required": true
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ],
+                                                                "required": true
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "label": "Video",
+                                                        "value": "video",
+                                                        "nested": [
+                                                            {
+                                                                "name": "inputType",
+                                                                "type": "select",
+                                                                "label": "Video Input Method",
+                                                                "default": "uri",
+                                                                "options": [
+                                                                    {
+                                                                        "label": "Upload a File",
+                                                                        "value": "upload",
+                                                                        "nested": [
+                                                                            {
+                                                                                "name": "fileName",
+                                                                                "type": "filename",
+                                                                                "label": "File Name",
+                                                                                "required": true,
+                                                                                "semantic": "file:name"
+                                                                            },
+                                                                            {
+                                                                                "name": "data",
+                                                                                "type": "buffer",
+                                                                                "label": "Data",
+                                                                                "required": true,
+                                                                                "semantic": "file:data"
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "label": "File URL",
+                                                                        "value": "uri",
+                                                                        "nested": [
+                                                                            {
+                                                                                "help": "The file extension/format.",
+                                                                                "name": "mime",
+                                                                                "type": "select",
+                                                                                "label": "MIME Type",
+                                                                                "options": [
+                                                                                    {
+                                                                                        "label": "MP4",
+                                                                                        "value": "mp4"
+                                                                                    },
+                                                                                    {
+                                                                                        "label": "MPG",
+                                                                                        "value": "mpg"
+                                                                                    },
+                                                                                    {
+                                                                                        "label": "MPEG",
+                                                                                        "value": "mpeg"
+                                                                                    },
+                                                                                    {
+                                                                                        "label": "MOV",
+                                                                                        "value": "mov"
+                                                                                    },
+                                                                                    {
+                                                                                        "label": "AVI",
+                                                                                        "value": "avi"
+                                                                                    },
+                                                                                    {
+                                                                                        "label": "FLV",
+                                                                                        "value": "x-flv"
+                                                                                    },
+                                                                                    {
+                                                                                        "label": "WEBM",
+                                                                                        "value": "webm"
+                                                                                    },
+                                                                                    {
+                                                                                        "label": "WMV",
+                                                                                        "value": "wmv"
+                                                                                    },
+                                                                                    {
+                                                                                        "label": "3GPP",
+                                                                                        "value": "3gpp"
+                                                                                    }
+                                                                                ],
+                                                                                "required": true
+                                                                            },
+                                                                            {
+                                                                                "help": "The URL must be publicly accessible. To test this, you can try opening the URL in an anonymous tab. It must take you directly to the file.\nEnsure that the URL is not restricted from automated access. This can involve external platform settings, proxy bot-blocking, and robots.txt configuration.",
+                                                                                "name": "file_uri",
+                                                                                "type": "text",
+                                                                                "label": "File URL",
+                                                                                "required": true
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ],
+                                                                "required": true
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "label": "Audio",
+                                                        "value": "audio",
+                                                        "nested": [
+                                                            {
+                                                                "name": "inputType",
+                                                                "type": "select",
+                                                                "label": "Audio Input Method",
+                                                                "default": "uri",
+                                                                "options": [
+                                                                    {
+                                                                        "label": "Upload a File",
+                                                                        "value": "upload",
+                                                                        "nested": [
+                                                                            {
+                                                                                "name": "fileName",
+                                                                                "type": "filename",
+                                                                                "label": "File Name",
+                                                                                "required": true,
+                                                                                "semantic": "file:name"
+                                                                            },
+                                                                            {
+                                                                                "name": "data",
+                                                                                "type": "buffer",
+                                                                                "label": "Data",
+                                                                                "required": true,
+                                                                                "semantic": "file:data"
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "label": "File URL",
+                                                                        "value": "uri",
+                                                                        "nested": [
+                                                                            {
+                                                                                "help": "The file extension/format.",
+                                                                                "name": "mime",
+                                                                                "type": "select",
+                                                                                "label": "MIME Type",
+                                                                                "options": [
+                                                                                    {
+                                                                                        "label": "WAV",
+                                                                                        "value": "wav"
+                                                                                    },
+                                                                                    {
+                                                                                        "label": "MP3",
+                                                                                        "value": "mp3"
+                                                                                    },
+                                                                                    {
+                                                                                        "label": "AIFF",
+                                                                                        "value": "aiff"
+                                                                                    },
+                                                                                    {
+                                                                                        "label": "AAC",
+                                                                                        "value": "aac"
+                                                                                    },
+                                                                                    {
+                                                                                        "label": "OGG Vorbis",
+                                                                                        "value": "ogg"
+                                                                                    },
+                                                                                    {
+                                                                                        "label": "FLAC",
+                                                                                        "value": "flac"
+                                                                                    }
+                                                                                ],
+                                                                                "required": true
+                                                                            },
+                                                                            {
+                                                                                "help": "The URL must be publicly accessible. To test this, you can try opening the URL in an anonymous tab. It must take you directly to the file.\nEnsure that the URL is not restricted from automated access. This can involve external platform settings, proxy bot-blocking, and robots.txt configuration.",
+                                                                                "name": "file_uri",
+                                                                                "type": "text",
+                                                                                "label": "File URL",
+                                                                                "required": true
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ],
+                                                                "required": true
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "required": true,
+                                                "validate": true
+                                            }
+                                        ],
+                                        "type": "collection",
+                                        "label": "File"
+                                    },
+                                    "type": "array",
+                                    "label": "Files",
+                                    "labels": {
+                                        "add": "Add file"
+                                    }
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Message"
+                        },
+                        "type": "array",
+                        "label": "Messages",
+                        "required": true
+                    },
+                    {
+                        "name": "temperature",
+                        "type": "number",
+                        "label": "Temperature",
+                        "validate": {
+                            "max": 1,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "maxOutputTokens",
+                        "type": "uinteger",
+                        "label": "Max Output Tokens",
+                        "validate": {
+                            "max": 8192,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "topK",
+                        "type": "uinteger",
+                        "label": "Top-k",
+                        "validate": {
+                            "max": 40,
+                            "min": 1
+                        }
+                    },
+                    {
+                        "name": "topP",
+                        "type": "number",
+                        "label": "Top-p",
+                        "validate": {
+                            "max": 1,
+                            "min": 0
+                        }
+                    },
+                    {
+                        "name": "stopSequences",
+                        "spec": {
+                            "name": "value",
+                            "type": "text",
+                            "label": "Stop Sequence"
+                        },
+                        "type": "array",
+                        "label": "Stop Sequences",
+                        "validate": {
+                            "maxItems": 5
+                        }
+                    },
+                    {
+                        "name": "responseMimeType",
+                        "type": "select",
+                        "label": "Response Format",
+                        "validate": {
+                            "enum": [
+                                "text/plain",
+                                "application/json"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "safetySettings",
+                        "spec": {
+                            "name": "value",
+                            "spec": [
+                                {
+                                    "name": "category",
+                                    "type": "select",
+                                    "label": "Safety Category",
+                                    "options": [
+                                        {
+                                            "label": "Sexually Explicit",
+                                            "value": "HARM_CATEGORY_SEXUALLY_EXPLICIT"
+                                        },
+                                        {
+                                            "label": "Hate Speech",
+                                            "value": "HARM_CATEGORY_HATE_SPEECH"
+                                        },
+                                        {
+                                            "label": "Harassment",
+                                            "value": "HARM_CATEGORY_HARASSMENT"
+                                        },
+                                        {
+                                            "label": "Dangerous Content",
+                                            "value": "HARM_CATEGORY_DANGEROUS_CONTENT"
+                                        }
+                                    ],
+                                    "required": true
+                                },
+                                {
+                                    "name": "threshold",
+                                    "type": "select",
+                                    "label": "Threshold",
+                                    "options": [
+                                        {
+                                            "label": "Block None",
+                                            "value": "BLOCK_NONE"
+                                        },
+                                        {
+                                            "label": "Block Low and Above",
+                                            "value": "BLOCK_LOW_AND_ABOVE"
+                                        },
+                                        {
+                                            "label": "Block Medium and Above",
+                                            "value": "BLOCK_MEDIUM_AND_ABOVE"
+                                        },
+                                        {
+                                            "label": "Block High and Above",
+                                            "value": "BLOCK_ONLY_HIGH"
+                                        }
+                                    ],
+                                    "required": true
+                                }
+                            ],
+                            "type": "collection",
+                            "label": "Safety Setting"
+                        },
+                        "type": "array",
+                        "label": "Safety Settings"
+                    },
+                    {
+                        "name": "tools",
+                        "type": "select",
+                        "label": "Tools",
+                        "validate": {
+                            "enum": [
+                                "functionDeclarations",
+                                "grounding"
+                            ]
+                        }
+                    }
+                ],
+                "interface": [
+                    {
+                        "name": "predictions",
+                        "spec": {
+                            "spec": [
+                                {
+                                    "name": "candidates",
+                                    "spec": {
+                                        "spec": [
+                                            {
+                                                "name": "content",
+                                                "spec": [
+                                                    {
+                                                        "name": "role",
+                                                        "type": "text",
+                                                        "label": "Role"
+                                                    },
+                                                    {
+                                                        "name": "parts",
+                                                        "spec": [
+                                                            {
+                                                                "name": "text",
+                                                                "type": "text",
+                                                                "label": "Text"
+                                                            }
+                                                        ],
+                                                        "type": "array",
+                                                        "label": "Parts"
+                                                    }
+                                                ],
+                                                "type": "collection",
+                                                "label": "Content"
+                                            },
+                                            {
+                                                "name": "finishReason",
+                                                "type": "text",
+                                                "label": "Finish Reason"
+                                            },
+                                            {
+                                                "name": "safetyRatings",
+                                                "spec": {
+                                                    "spec": [
+                                                        {
+                                                            "name": "category",
+                                                            "type": "text",
+                                                            "label": "Category"
+                                                        },
+                                                        {
+                                                            "name": "probability",
+                                                            "type": "text",
+                                                            "label": "Probability"
+                                                        },
+                                                        {
+                                                            "name": "probabilityScore",
+                                                            "type": "number",
+                                                            "label": "Probability Score"
+                                                        },
+                                                        {
+                                                            "name": "severity",
+                                                            "type": "text",
+                                                            "label": "Severity"
+                                                        },
+                                                        {
+                                                            "name": "severityScore",
+                                                            "type": "number",
+                                                            "label": "Severity Score"
+                                                        }
+                                                    ],
+                                                    "type": "collection"
+                                                },
+                                                "type": "array",
+                                                "label": "Safety Ratings"
+                                            },
+                                            {
+                                                "name": "groundingMetadata",
+                                                "spec": [
+                                                    {
+                                                        "name": "webSearchQueries",
+                                                        "spec": {
+                                                            "type": "text"
+                                                        },
+                                                        "type": "array",
+                                                        "label": "Web Search Queries"
+                                                    },
+                                                    {
+                                                        "name": "searchEntryPoint",
+                                                        "type": "collection",
+                                                        "label": "Search Entry Point"
+                                                    },
+                                                    {
+                                                        "name": "groundingChunks",
+                                                        "spec": {
+                                                            "type": "collection"
+                                                        },
+                                                        "type": "array",
+                                                        "label": "Grounding Chunks"
+                                                    },
+                                                    {
+                                                        "name": "groundingSupports",
+                                                        "spec": {
+                                                            "type": "collection"
+                                                        },
+                                                        "type": "array",
+                                                        "label": "Grounding Supports"
+                                                    },
+                                                    {
+                                                        "name": "retrievalMetadata",
+                                                        "spec": [],
+                                                        "type": "collection",
+                                                        "label": "Retrieval Metadata"
+                                                    }
+                                                ],
+                                                "type": "collection",
+                                                "label": "Grounding Metadata"
+                                            }
+                                        ],
+                                        "type": "collection"
+                                    },
+                                    "type": "array",
+                                    "label": "Candidates"
+                                },
+                                {
+                                    "name": "usageMetadata",
+                                    "spec": [
+                                        {
+                                            "name": "promptTokenCount",
+                                            "type": "number",
+                                            "label": "Prompt Token Count"
+                                        },
+                                        {
+                                            "name": "candidatesTokenCount",
+                                            "type": "number",
+                                            "label": "Candidates Token Count"
+                                        },
+                                        {
+                                            "name": "totalTokenCount",
+                                            "type": "number",
+                                            "label": "Total Token Count"
+                                        },
+                                        {
+                                            "name": "promptTokensDetails",
+                                            "spec": [
+                                                {
+                                                    "name": "modality",
+                                                    "type": "text",
+                                                    "label": "Modality"
+                                                },
+                                                {
+                                                    "name": "tokenCount",
+                                                    "type": "number",
+                                                    "label": "Token Count"
+                                                }
+                                            ],
+                                            "type": "array",
+                                            "label": "Prompt Tokens Details"
+                                        },
+                                        {
+                                            "name": "candidatesTokensDetails",
+                                            "spec": [
+                                                {
+                                                    "name": "modality",
+                                                    "type": "text",
+                                                    "label": "Modality"
+                                                },
+                                                {
+                                                    "name": "tokenCount",
+                                                    "type": "number",
+                                                    "label": "Token Count"
+                                                }
+                                            ],
+                                            "type": "array",
+                                            "label": "Candidates Tokens Details"
+                                        }
+                                    ],
+                                    "type": "collection",
+                                    "label": "Usage Metadata"
+                                },
+                                {
+                                    "name": "modelVersion",
+                                    "type": "text",
+                                    "label": "Model Version"
+                                },
+                                {
+                                    "name": "createTime",
+                                    "type": "date",
+                                    "label": "Create Time"
+                                },
+                                {
+                                    "name": "responseId",
+                                    "type": "text",
+                                    "label": "Response ID"
+                                }
+                            ],
+                            "type": "collection"
+                        },
+                        "type": "array",
+                        "label": "Predictions"
+                    },
+                    {
+                        "name": "textResponse",
+                        "type": "text",
+                        "label": "Text Response"
+                    }
+                ]
+            }
+        },
+        {
+            "id": 3,
+            "module": "whatsapp-business-cloud:sendMessage",
+            "version": 1,
+            "parameters": {
+                "__IMTCONN__": 3626610
+            },
+            "mapper": {
+                "to": "{{1.contacts[].wa_id}}",
+                "text": {
+                    "body": "{{2.textResponse}}",
+                    "preview_url": false
+                },
+                "type": "text",
+                "fromId": "881283488398287"
+            },
+            "metadata": {
+                "designer": {
+                    "x": 600,
+                    "y": 0
+                },
+                "restore": {
+                    "expect": {
+                        "text": {
+                            "nested": {
+                                "preview_url": {
+                                    "mode": "chose"
+                                }
+                            }
+                        },
+                        "type": {
+                            "label": "Text"
+                        },
+                        "fromId": {
+                            "mode": "chose",
+                            "label": "Yadhu G Kartha (+971 54 239 7219)"
+                        }
+                    },
+                    "parameters": {
+                        "__IMTCONN__": {
+                            "data": {
+                                "scoped": "true",
+                                "connection": "whatsapp-business-cloud"
+                            },
+                            "label": "My WhatsApp Business Cloud connection (Yadhu G Kartha (1350784193430845))"
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "__IMTCONN__",
+                        "type": "account:whatsapp-business-cloud,whatsapp-business-cloud2",
+                        "label": "Connection",
+                        "required": true
+                    }
+                ],
+                "expect": [
+                    {
+                        "name": "fromId",
+                        "type": "select",
+                        "label": "Sender ID",
+                        "required": true
+                    },
+                    {
+                        "name": "to",
+                        "type": "text",
+                        "label": "Receiver",
+                        "required": true
+                    },
+                    {
+                        "name": "type",
+                        "type": "select",
+                        "label": "Message Type",
+                        "required": true,
+                        "validate": {
+                            "enum": [
+                                "text",
+                                "image",
+                                "audio",
+                                "video",
+                                "document",
+                                "sticker",
+                                "location",
+                                "contacts",
+                                "interactive"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "text",
+                        "spec": [
+                            {
+                                "name": "body",
+                                "type": "text",
+                                "label": "Body",
+                                "required": true,
+                                "validate": {
+                                    "max": 4096
+                                }
+                            },
+                            {
+                                "name": "preview_url",
+                                "type": "boolean",
+                                "label": "Preview URL",
+                                "required": true
+                            }
+                        ],
+                        "type": "collection",
+                        "label": "Text"
+                    }
+                ]
+            }
+        }
+    ],
+    "metadata": {
+        "instant": true,
+        "version": 1,
+        "scenario": {
+            "roundtrips": 1,
+            "maxErrors": 3,
+            "autoCommit": true,
+            "autoCommitTriggerLast": true,
+            "sequential": false,
+            "slots": null,
+            "confidential": false,
+            "dataloss": false,
+            "dlq": false,
+            "freshVariables": false
+        },
+        "designer": {
+            "orphans": []
+        },
+        "zone": "eu1.make.com",
+        "notes": []
+    }
+}
